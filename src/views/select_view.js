@@ -5,11 +5,16 @@ const SelectView = function(element){
 }
 
 SelectView.prototype.bindEvents = function(){
-    console.log('ho1');
+    // console.log('ho1');
     PubSub.subscribe('Instruments: Loaded', (evt) => {
-        console.log('ho');
+        // console.log('ho');
         const allInstruments = evt.detail;
         this.populate(allInstruments);
+    });
+
+    this.element.addEventListener('change', (evt) => {
+        const selectedIndex = evt.target.value;
+        PubSub.publish('SelectView:change', selectedIndex);
     });
 }
 

@@ -8,6 +8,16 @@ const InstrumentFamilies = function(data) {
 InstrumentFamilies.prototype.bindEvents = function() {
   PubSub.publish('Instruments: Loaded', this.data);
 
+  PubSub.subscribe('SelectView:change', (event)=>{
+    const selectedIndex = event.detail
+    this.publishInstrumentDetaisl(selectedIndex)
+  })
+
+InstrumentFamilies.prototype.publishInstrumentDetaisl = function(selectedIndex){
+    const selectedInstrument = this.data[selectedIndex]
+    PubSub.publish('DisplayView: InstrumentFamily', selectedInstrument)
+    
+}
 
 };
 
