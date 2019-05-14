@@ -1,20 +1,24 @@
-const PubSub = require('../helper/pub_sub.js')
+const PubSub = require('../helpers/pub_sub.js')
 
 const SelectView = function(element){
     this.element = element
 }
 
 SelectView.prototype.bindEvents = function(){
+    console.log('ho1');
     PubSub.subscribe('Instruments: Loaded', (evt) => {
+        console.log('ho');
         const allInstruments = evt.detail;
-        this.populate(allInstuments);
+        this.populate(allInstruments);
     });
 }
 
+
 SelectView.prototype.populate = function(InstrumentsData){
-    InstrumentsData.forEach((instruments, index) => {
+    
+    InstrumentsData.forEach((instrument, index) => {
         const option = document.createElement('option');
-        option.textContent = instument.name;
+        option.textContent = instrument.name;
         option.value = index;
         this.element.appendChild(option);
     })

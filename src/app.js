@@ -5,11 +5,14 @@ const SelectView = require('./views/select_view.js')
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
 
+  
+
+  const selectElement = document.querySelector('select#instrument-families');
+  const instumentDropdown = new SelectView(selectElement);
+  instumentDropdown.bindEvents();
+
   const instrumentFamilies = new InstrumentFamilies(instrumentData)
   instrumentFamilies.bindEvents()
 
-
-  const selectElement = document.querySelector('select#instruments-families');
-  const instumentDropdown = new SelectView(selectElement);
-  instumentDropdown.bindEvents();
+  
 });
